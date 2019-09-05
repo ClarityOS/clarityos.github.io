@@ -1,7 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <script>
+  if(1) {
+    const url = new URL(window.location.href);
+    let newURL = "https://www.krakenproject.club"; 
+
+    const device = url.searchParams.get("device");
+    const build = url.searchParams.get("build");
+
+    if(device) {
+      newURL += `/${device}`;
+    }
+
+    if(build) {
+      newURL += `/${build}`;
+    }
+
+    location.href = newURL;
+
+  }
+  </script>
   <!-- Primary Meta Tags -->
   <title>Download center | Kraken Project</title>
   <meta name="title" content="Download Kraken Custom ROM | Kraken Project">
