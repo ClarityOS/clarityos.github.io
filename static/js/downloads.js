@@ -21,7 +21,7 @@ const URLStack = {
   getBase: () => "https://raw.githubusercontent.com/KrakenProject/official_devices/master/",
   getDevices: () => URLStack.getBase() + 'devices.json',
   getBuilds: (codename) => `${URLStack.getBase()}builds/${codename}.json`,
-  getChangelog: (build, codename) => `${URLStack.getBase()}changelog/${codename}/${build.replace('zip', 'txt')}`,
+  getChangelog: (build, codename) => `${URLStack.getBase()}changelogs/${codename}/${build.replace('zip', 'txt')}`,
   getDownloadStat: (build, codename) => `https://sourceforge.net/projects/krakenproject/files/${codename}/${build}/stats/json?start_date=2019-04-04&end_date=${dateUtils.getToday()}`,
   getDownload: (build, codename) => `https://downloads.sourceforge.net/project/krakenproject/${codename}/${build}`,
 }
