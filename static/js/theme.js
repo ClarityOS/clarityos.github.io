@@ -1,3 +1,5 @@
+let cm;
+
 window.onload = function () {
 
   !!localStorage.getItem('accent') ? setCssVar('--accent', localStorage.getItem('accent')) : null
@@ -7,7 +9,13 @@ window.onload = function () {
   renderList(backgrounds, setBg, "backgrounds-render");
   renderList(colors, setAccent, "colors-render");
 
-  christmasMode();
+  if (localStorage.getItem("cm") != "1") {
+    cm = christmasMode();
+  } else {
+    document.querySelector("#christmas-switch").checked = true
+  }
+
+  document.querySelector("#christmas-switch").addEventListener("change", handleChristmasSwitch)
 
 };
 
@@ -82,8 +90,18 @@ const setCssVar = (name, value) => {
   document.getElementsByTagName("body")[0].style.setProperty(name, value)
 }
 
-const christmasMode = () => {
-  setInterval(function(){
+const christmasMode = () => (
+  setInterval(function () {
     setCssVar("--accent", colors[Math.floor(Math.random() * colors.length)])
-  }, Math.floor(Math.random() * 1500))
+  }, Math.floor(Math.random() * 1500) + 300)
+)
+
+const handleChristmasSwitch = ({ target }) => {
+  if (target.checked) {
+    localStorage.setItem("cm", "1");
+    clearInterval(cm)
+  } else {
+    localStorage.setItem("cm", "0");
+    cm = christmasMode()
+  }
 }

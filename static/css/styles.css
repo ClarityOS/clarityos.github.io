@@ -5,7 +5,7 @@
   --text: #f7f7f7 ;
 }
 
-h1, h2, h3, h4, h5, h6, span, th, pre {
+h1, h2, h3, h4, h5, h6, span, th, pre, label {
   color: var(--text);
 }
 
@@ -493,4 +493,17 @@ a, span {
   .sidenav {
     height: 100% !important;
   }
+}
+
+.switch {
+  padding-bottom: 10px;
+}
+
+.switch label input[type=checkbox]:checked+.lever:after {
+  background-color: var(--accent);
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+  background-color: var(--accent);
+  opacity: 0.9;
 }
