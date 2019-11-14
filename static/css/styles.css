@@ -17,6 +17,7 @@ h1, h2, h3, h4, h5, h6, span, th, pre {
   color: var(--accent);
 }
 
+
 .line {
   border-top: 1px solid var(--accent);
 }
