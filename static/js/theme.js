@@ -7,6 +7,8 @@ window.onload = function () {
   renderList(backgrounds, setBg, "backgrounds-render");
   renderList(colors, setAccent, "colors-render");
 
+  christmasMode();
+
 };
 
 const toogleMenu = () => {
@@ -78,4 +80,10 @@ const setupMetaColor = color => {
 const setCssVar = (name, value) => {
   name == '--accent' ? setupMetaColor(value) : null;
   document.getElementsByTagName("body")[0].style.setProperty(name, value)
+}
+
+const christmasMode = () => {
+  setInterval(function(){
+    setCssVar("--accent", colors[Math.floor(Math.random() * colors.length)])
+  }, Math.floor(Math.random() * 1500))
 }
