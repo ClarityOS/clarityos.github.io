@@ -221,7 +221,10 @@ var app = new Vue({
 
     },
     getIndex: function (filename) {
-      return this.builds.findIndex(b => b.filename === filename)
+      return this.versions.map((version) => 
+      this.builds[version]).map((build) => 
+      build.map(i => i.file_name)).flatMap(e => 
+      e).findIndex(b => b === filename)
     },
     showHomePage: function () {
       this.codename = null
