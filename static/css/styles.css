@@ -507,3 +507,7 @@ a, span {
   background-color: var(--accent);
   opacity: 0.9;
 }
+
+.rounded-img {
+  border-radius: 50% !important;
+}
