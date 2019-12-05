@@ -14,10 +14,9 @@
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
   <link rel="stylesheet" href="static/css/styles.css">
-  <meta name="msapplication-TileColor" content="#5485d8">
-  <meta name="theme-color" content="#5485d8">
+  <meta name="msapplication-TileColor" content="#FAB711">
+  <meta name="theme-color" content="#FAB711">
   <meta name="referrer" content="no-referrer" />
-  <script src="static/js/theme.js"></script>
 </head>
 
 <body>
@@ -27,8 +26,6 @@
       <div class="nav-wrapper">
         <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large left"><i
             class="material-icons left">menu</i></a>
-        <a onclick="toogleMenu()" class="sidenav-trigger show-on-large right"><i
-            class="settings material-icons">color_lens</i></a>
       </div>
     </nav>
   </div>
@@ -90,36 +87,6 @@
       </div>
     </ul>
     <!-- END NAVBAR -->
-
-    <!-- SETTINGS BUTTON -->
-    <a onclick="toogleMenu()" class="accent"><i id='settings' class="settings material-icons pointer">color_lens</i></a>
-    <div class="menu" style="display: none">
-      <h6 class="accent">COLOR ENGINE</h6>
-      <div class="line" style="margin-bottom: 12px;"></div>
-
-      <div>
-        <div class="switch">
-          <label>
-            Disable Christmas mode
-            <input type="checkbox" id="christmas-switch">
-            <span class="lever"></span>
-          </label>
-        </div>
-      
-      </div>
-
-      <div class="line" style="margin-bottom: 12px;"></div>
-      <div>
-        <span class="accent">BACKGROUND</span>
-        <div id="backgrounds-render"></div>
-      </div>
-      <div>
-        <span class="accent">COLOR</span>
-        <div id="colors-render"></div>
-      </div>
-    </div>
-    <!-- END SETTINGS BUTTON -->
-
 
     <!-- WELCOME -->
     <div v-if="!codename" class='home center'>
