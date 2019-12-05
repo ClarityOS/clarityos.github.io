@@ -18,12 +18,12 @@ const dateUtils = {
 }
 
 const URLStack = {
-  getBase: () => "https://raw.githubusercontent.com/KrakenProject/official_devices/master/",
+  getBase: () => "https://raw.githubusercontent.com/ClarityOS/official_devices/master/",
   getDevices: () => URLStack.getBase() + 'devices.json',
   getBuilds: (codename) => `${URLStack.getBase()}builds/${codename}.json`,
   getChangelog: (build, codename) => `${URLStack.getBase()}changelogs/${codename}/${build.replace('zip', 'txt')}`,
-  getDownloadStat: (build, codename) => `https://sourceforge.net/projects/krakenproject/files/${codename}/${build}/stats/json?start_date=2019-04-04&end_date=${dateUtils.getToday()}`,
-  getDownload: (build, codename) => `https://downloads.sourceforge.net/project/krakenproject/${codename}/${build}`,
+  getDownloadStat: (build, codename) => `https://sourceforge.net/projects/ClarityOS/files/${codename}/${build}/stats/json?start_date=2019-12-04&end_date=${dateUtils.getToday()}`,
+  getDownload: (build, codename) => `https://downloads.sourceforge.net/project/ClarityOS/${codename}/${build}`,
 }
 
 const materializeUtils = {
@@ -49,12 +49,12 @@ const SEO = {
     document.head.querySelector("meta[name=description]").content = description
   },
   setDeviceInfo: (name, codename) => {
-    SEO.setTitle(`${name} (${codename}) | Kraken Download Center`)
-    SEO.setDescription(`Download Kraken for ${name} (${codename}) | Kraken Project`)
+    SEO.setTitle(`${name} (${codename}) | ClarityOS Download Center`)
+    SEO.setDescription(`Download ClarityOS for ${name} (${codename}) | ClarityOS`)
   },
   setHomeInfo: () => {
-    SEO.setTitle(`Download center | Kraken Project`)
-    SEO.setDescription(`Download Kraken Custom ROM | Kraken Project`)
+    SEO.setTitle(`Download center | ClarityOS`)
+    SEO.setDescription(`Download Clarity Custom ROM | ClarityOS`)
   }
 }
 
@@ -97,6 +97,7 @@ var app = new Vue({
     devices: [],
     builds: [],
     device: {},
+    versions: [],
     codename: '',
     search: '',
     deviceLoading: true,
@@ -168,6 +169,7 @@ var app = new Vue({
 
       this.builds = [];
       this.buildLoading = true;
+      this.versions = [];
 
       if (history.state.device !== codename) {
         if (codename !== paramUtils.getDevice()) paramUtils.setDevice(codename)
@@ -182,13 +184,24 @@ var app = new Vue({
       materializeUtils.initSidenav()
 
       await request(URLStack.getBuilds(codename))
-        .then(res => this.builds = res.response.map((build) => {
-          build.size = humanSize(build.size);
-          build.datetime = dateUtils.human(build.datetime);
-          build.changelog = ""
-          build.downloads = 0
-          return build
-        }).reverse())
+        .then(res => {
+
+          this.device.supported_versions.forEach((version) => {
+            this.versions.push(version.version_code);
+
+            let builds = res[version.version_code];
+
+            this.builds[version.version_code] = builds.map(build => {
+              build.size = humanSize(build.file_size);
+              build.changelog = ""
+              build.downloads = 0
+
+              return build;
+            })
+                      
+          })
+
+        })
         .catch(e => materializeUtils.showAlert("Failed to load builds. try again later."))
         .finally(() => this.buildLoading = false)
 
