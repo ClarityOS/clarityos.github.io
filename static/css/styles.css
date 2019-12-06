@@ -2,7 +2,7 @@
   --background: #ffffff;
   --card: white;
   --accent: #FAB711;
-  --text: #161616;
+  --text: #2b2b2b;
 }
 
 h1, h2, h3, h4, h5, h6, span, th, pre, label {
@@ -249,9 +249,9 @@ nav .sidenav-trigger i {
 .search-link {
   font-family: "Product Sans";
   background-color: transparent !important;
-  color: var(--accent) !important;
+  color: var(--text) !important;
   padding: 10px !important;
-  margin-left: 5px !important;
+  margin-left: 15px !important;
   display: block !important;
   text-align: left !important;
   padding-left: 5px !important;
@@ -262,11 +262,12 @@ input {
   margin: 0px !important;
   padding-left: 5px !important;
   border-bottom: none !important;
-  color: var(--accent) !important;
 }
 
 input::placeholder {
-  color: var(--accent) !important;
+  color: var(--text) !important;
+  text-align: center;
+  padding-right: 20px;
 }
 
 input:focus {
@@ -280,6 +281,11 @@ input:focus {
   margin-right: 0px !important;
   margin-bottom: 4px !important;
   vertical-align: middle;
+}
+
+.md-dialog {
+  border: 1px solid #E0E0E0;
+  border-radius: 6px;
 }
 
 .square {
@@ -309,6 +315,9 @@ tr th {
   margin-right: 10px !important;
   margin-bottom: 15px;
   padding: 1px;
+  border: 0.6px solid #eaeaea;
+  box-shadow: 0 0.6px 4px rgba(0,0,0,0.05), 0 0.6px 2px rgba(0,0,0,0.11) !important;
+  border-radius: 7px !important;
 }
 
 .builds h6 {
@@ -382,6 +391,7 @@ a, span {
 
 .collapsible-header, .collapsible, .collapsible-body {
   border: none;
+  margin: 1px;
 }
 
 .collapsible-body {
